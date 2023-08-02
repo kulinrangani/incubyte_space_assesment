@@ -36,7 +36,22 @@ export const rotateRight = (currentDirection: Direction): Direction => {
             return currentDirection;
     }
 }
-
+export const rotateLeft=(currentDirection: Direction): Direction => {
+    switch (currentDirection) {
+      case 'U':
+        return 'W';
+      case 'N':
+        return 'W';
+      case 'W':
+        return 'S';
+      case 'S':
+        return 'E';
+      case 'E':
+        return 'N';
+      default:
+        return currentDirection;
+    }
+  }
 export const moveUpward = (): Direction => {
     const directionWillBe:Direction = 'U';
     return directionWillBe;
