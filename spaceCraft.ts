@@ -12,9 +12,9 @@ export const moveForward = (currentPosition: Position, currentDirection: Directi
         case 'E':
             return { ...currentPosition, x: currentPosition.x + 1 };
         case 'S':
-            return { ...currentPosition, y: currentPosition.y - 1 };
+            return { ...currentPosition, y: currentPosition.y + 1 };
         case 'W':
-            return { ...currentPosition, x: currentPosition.x - 1 };
+            return { ...currentPosition, x: currentPosition.x + 1 };
         default:
             return currentPosition;
     }
@@ -26,17 +26,29 @@ export const moveBackward = (currentPosition: Position, currentDirection: Direct
         case 'E':
             return { ...currentPosition, x: currentPosition.x - 1 };
         case 'S':
-            return { ...currentPosition, y: currentPosition.y + 1 };
+            return { ...currentPosition, y: currentPosition.y - 1 };
         case 'W':
-            return { ...currentPosition, x: currentPosition.x + 1 };
+            return { ...currentPosition, x: currentPosition.x - 1 };
         case "U":
             return { ...currentPosition, z: currentPosition.z - 1 };
         default:
             return currentPosition;
     }
 }
-export const rotateRight = (currentDirection: Direction): Direction => {
+export const rotateRight = (currentDirection: Direction , prevDirection? : Direction): Direction => {
     switch (currentDirection) {
+        case 'U':
+            if(prevDirection == 'W'){
+                return 'W';
+            }else if(prevDirection == 'N'){
+                return 'N';
+            }else if(prevDirection == 'E'){
+                return 'E';
+            }else if(prevDirection == 'S'){
+                return 'S';
+            }else{
+                return 'W';
+            }
         case 'N':
             return 'E';
         case 'E':
@@ -49,10 +61,21 @@ export const rotateRight = (currentDirection: Direction): Direction => {
             return currentDirection;
     }
 }
-export const rotateLeft=(currentDirection: Direction): Direction => {
+export const rotateLeft=(currentDirection: Direction , prevDirection? : Direction): Direction => {
     switch (currentDirection) {
       case 'U':
-        return 'W';
+        console.log(currentDirection , prevDirection);
+        if(prevDirection == 'W'){
+            return 'E';
+        }else if(prevDirection == 'S'){
+            return 'N';
+        }else if(prevDirection == 'E'){
+            return 'W';
+        }else if(prevDirection == 'N'){
+            return 'S';
+        }else{
+            return 'W';
+        }
       case 'N':
         return 'W';
       case 'W':
@@ -73,23 +96,45 @@ export const moveUpward = (): Direction => {
 export default function spaceCraft(commands: Command[], initialDirection: Direction): [Position, Direction] {
     let currentPosition: Position = { x: 0, y: 0, z: 0 };
     let currentDirection: Direction = initialDirection;
-    for (const command of commands) {
-        switch (command) {
+    let prevDirection : Direction = initialDirection;
+    // console.log(commands);
+    for(let i = 0; i < commands.length ; i++){
+        switch (commands[i]) {
             case 'f':
                 currentPosition = moveForward(currentPosition, currentDirection);
                 break;
             case 'r':
-                currentDirection = rotateRight(currentDirection);
+                currentDirection = rotateRight(currentDirection, prevDirection);
                 break;
             case 'u':
+                prevDirection = currentDirection;
                 currentDirection = moveUpward();
                 break;
             case 'b':
                 currentPosition = moveBackward(currentPosition, currentDirection);
                 break;
             case 'l': 
-                currentDirection = rotateLeft(currentDirection);
+                currentDirection = rotateLeft(currentDirection , prevDirection);
+                break;
         }
     }
+    // for (const command of commands) {
+    //     switch (command) {
+    //         case 'f':
+    //             currentPosition = moveForward(currentPosition, currentDirection);
+    //             break;
+    //         case 'r':
+    //             currentDirection = rotateRight(currentDirection);
+    //             break;
+    //         case 'u':
+    //             currentDirection = moveUpward();
+    //             break;
+    //         case 'b':
+    //             currentPosition = moveBackward(currentPosition, currentDirection);
+    //             break;
+    //         case 'l': 
+    //             currentDirection = rotateLeft(currentDirection);
+    //     }
+    // }
     return [currentPosition, currentDirection];
 }

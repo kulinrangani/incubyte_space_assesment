@@ -30,6 +30,11 @@ describe("rotate Left", () => {
         const actualOutput  :  Direction = rotateLeft(currentDirection);
         expect(actualOutput).toBe("N");
     })
+    it("it shold rotate north if prevDirection was east",() => {
+        const currentDirection:Direction = "U";
+        const actualOutput  :  Direction = rotateLeft(currentDirection , 'E');
+        expect(actualOutput).toBe("W");
+    })
 });
 describe("gotoUpward", () => {
     it("it shold rotate to upward",() => {
@@ -75,5 +80,12 @@ describe("spacecraft", () => {
         const initialDirection = "N";
         const actualOutput:  [Position,Direction]  = spaceCraft(commands,initialDirection);
         expect(actualOutput).toEqual([ { x: 0, y: 1, z: -1 }, 'W' ])
+    })
+    it("Should move spaceCraft to left direction Command-5", () => {
+        const commands:Command[] = ["f", "r", "u", "b","l"];
+        const initialDirection = "S";
+        const actualOutput:  [Position,Direction]  = spaceCraft(commands,initialDirection);
+        console.log(actualOutput);
+        expect(actualOutput).toEqual([ { x: 0, y: 1, z: -1 }, 'E' ])
     })
 })
