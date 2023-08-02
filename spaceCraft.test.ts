@@ -33,7 +33,6 @@ describe("rotate Left", () => {
 });
 describe("gotoUpward", () => {
     it("it shold rotate to upward",() => {
-        const currentDirection:Direction = "E";
         const actualOutput  : Direction = moveUpward();
         expect(actualOutput).toBe("U");
     })
@@ -41,7 +40,7 @@ describe("gotoUpward", () => {
 
 describe("gotoBackward", () => {
     it("it shold move to backward",() => {
-        const actualOutput  : Position = moveBackward({ x: 0, y: 1, z: 0 });
+        const actualOutput  : Position = moveBackward({ x: 0, y: 1, z: 0 },'U');
         expect(actualOutput).toEqual({ x: 0, y: 1, z: -1 });
     })
 });
