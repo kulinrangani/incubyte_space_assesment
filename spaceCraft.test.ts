@@ -81,11 +81,10 @@ describe("spacecraft", () => {
         const actualOutput:  [Position,Direction]  = spaceCraft(commands,initialDirection);
         expect(actualOutput).toEqual([ { x: 0, y: 1, z: -1 }, 'W' ])
     })
-    it("Should move spaceCraft to left direction Command-5", () => {
-        const commands:Command[] = ["f", "r", "u", "b","l"];
-        const initialDirection = "S";
+    it("cutome cords", () => {
+        const commands:Command[] = ["b", "u", "b", "l","f"];
+        const initialDirection = "E";
         const actualOutput:  [Position,Direction]  = spaceCraft(commands,initialDirection);
-        console.log(actualOutput);
-        expect(actualOutput).toEqual([ { x: 0, y: 1, z: -1 }, 'E' ])
+        expect(actualOutput).toEqual([ { x: 0, y: 0, z: -1 }, 'W' ])
     })
 })

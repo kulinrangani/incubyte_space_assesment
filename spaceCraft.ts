@@ -118,23 +118,5 @@ export default function spaceCraft(commands: Command[], initialDirection: Direct
                 break;
         }
     }
-    // for (const command of commands) {
-    //     switch (command) {
-    //         case 'f':
-    //             currentPosition = moveForward(currentPosition, currentDirection);
-    //             break;
-    //         case 'r':
-    //             currentDirection = rotateRight(currentDirection);
-    //             break;
-    //         case 'u':
-    //             currentDirection = moveUpward();
-    //             break;
-    //         case 'b':
-    //             currentPosition = moveBackward(currentPosition, currentDirection);
-    //             break;
-    //         case 'l': 
-    //             currentDirection = rotateLeft(currentDirection);
-    //     }
-    // }
     return [currentPosition, currentDirection];
 }
