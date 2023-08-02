@@ -19,8 +19,8 @@ export const moveForward = (currentPosition: Position, currentDirection: Directi
             return currentPosition;
     }
 }
-export const moveBackward = (currentPosition: Position, currentDirection: Direction): [Position, Direction]=> {
-    return [{ ...currentPosition, z: currentPosition.z - 1}, currentDirection];
+export const moveBackward = (currentPosition: Position): Position=> {
+    return { ...currentPosition, z: currentPosition.z - 1};
 }
 export const rotateRight = (currentDirection: Direction): Direction => {
     switch (currentDirection) {
@@ -37,7 +37,7 @@ export const rotateRight = (currentDirection: Direction): Direction => {
     }
 }
 
-export const moveUpward = (currentDirection: Direction): Direction => {
+export const moveUpward = (): Direction => {
     const directionWillBe:Direction = 'U';
     return directionWillBe;
 }
@@ -54,7 +54,10 @@ export default function spaceCraft(commands: Command[], initialDirection: Direct
                 currentDirection = rotateRight(currentDirection);
                 break;
             case 'u':
-                currentDirection = moveUpward(currentDirection);
+                currentDirection = moveUpward();
+                break;
+            case 'b':
+                currentPosition = moveBackward(currentPosition);
                 break;
         }
     }
