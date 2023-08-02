@@ -21,9 +21,14 @@ describe("rotate Right", () => {
 });
 describe("rotate Left", () => {
     it("it shold rotate left",() => {
-        const currentDirection:Direction = "N";
+        const currentDirection:Direction = "U";
         const actualOutput  :  Direction = rotateLeft(currentDirection);
         expect(actualOutput).toBe("W");
+    })
+    it("it shold rotate left",() => {
+        const currentDirection:Direction = "E";
+        const actualOutput  :  Direction = rotateLeft(currentDirection);
+        expect(actualOutput).toBe("N");
     })
 });
 describe("gotoUpward", () => {
@@ -36,7 +41,6 @@ describe("gotoUpward", () => {
 
 describe("gotoBackward", () => {
     it("it shold move to backward",() => {
-        const currentDirection:Direction = "E";
         const actualOutput  : Position = moveBackward({ x: 0, y: 1, z: 0 });
         expect(actualOutput).toEqual({ x: 0, y: 1, z: -1 });
     })
@@ -66,5 +70,11 @@ describe("spacecraft", () => {
         const initialDirection = "N";
         const actualOutput:  [Position,Direction]  = spaceCraft(commands,initialDirection);
         expect(actualOutput).toEqual([ { x: 0, y: 1, z: -1 }, 'U' ])
+    })
+    it("Should move spaceCraft to left direction Command-5", () => {
+        const commands:Command[] = ["f", "r", "u", "b","l"];
+        const initialDirection = "N";
+        const actualOutput:  [Position,Direction]  = spaceCraft(commands,initialDirection);
+        expect(actualOutput).toEqual([ { x: 0, y: 1, z: -1 }, 'W' ])
     })
 })

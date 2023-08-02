@@ -74,6 +74,8 @@ export default function spaceCraft(commands: Command[], initialDirection: Direct
             case 'b':
                 currentPosition = moveBackward(currentPosition);
                 break;
+            case 'l': 
+                currentDirection = rotateLeft(currentDirection);
         }
     }
     return [currentPosition, currentDirection];
