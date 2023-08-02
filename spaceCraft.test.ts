@@ -41,4 +41,10 @@ describe("spacecraft", () => {
         const actualOutput: [Position,Direction] = spaceCraft(commands, initialDirection);
         expect(actualOutput).toEqual([ { x: 0, y: 1, z: 0 }, 'E' ])
     })
+    it("Should move forward and then rotate to the rigth and move to upward Command-3", () => {
+        const commands:Command[] = ["f", "r", "u"];
+        const initialDirection = "N";
+        const actualOutput: [Position,Direction] = spaceCraft(commands, initialDirection);
+        expect(actualOutput).toEqual([ { x: 0, y: 1, z: 0 }, 'U' ])
+    })
 })

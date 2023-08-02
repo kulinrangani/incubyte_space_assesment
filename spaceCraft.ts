@@ -51,6 +51,9 @@ export default function spaceCraft(commands: Command[], initialDirection: Direct
             case 'r':
                 currentDirection = rotateRight(currentDirection);
                 break;
+            case 'u':
+                currentDirection = gotoUpward(currentDirection);
+                break
         }
     }
     return [currentPosition, currentDirection];
