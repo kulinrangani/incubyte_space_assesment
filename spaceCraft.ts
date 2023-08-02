@@ -1,5 +1,5 @@
-type Direction = 'N' | 'E' | 'S' | 'W';
-
+export type Direction = 'N' | 'E' | 'S' | 'W';
+export type Command = 'f' | 'r' | 'u' | 'b' | 'l';
 export interface Position {
   x: number;
   y: number;
@@ -20,3 +20,15 @@ export const moveForward = (currentPosition: Position, currentDirection: Directi
     }
   }
 
+export default function spaceCraft(commands: Command[], initialDirection: Direction): [Position, Direction] {
+    let currentPosition: Position = { x: 0, y: 0, z: 0 };
+    let currentDirection: Direction = initialDirection;
+    for (const command of commands) {
+      switch (command) {
+        case 'f':
+          currentPosition = moveForward(currentPosition, currentDirection);
+          break;
+      }
+    }
+    return [currentPosition, currentDirection];
+  }
