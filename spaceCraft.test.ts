@@ -1,4 +1,4 @@
-import { moveForward , Position , Command , Direction , rotateRight, gotoUpward , } from "./spaceCraft";
+import { moveForward , Position , Command , Direction , rotateRight, moveUpward , moveBackward} from "./spaceCraft";
 import spaceCraft from "./spaceCraft";
 describe("move forward", () => {
     it("it shold move forward to the space", () => {
@@ -23,8 +23,16 @@ describe("rotate Right", () => {
 describe("gotoUpward", () => {
     it("it shold rotate to upward",() => {
         const currentDirection:Direction = "E";
-        const actualOutput  : Direction = gotoUpward(currentDirection);
+        const actualOutput  : Direction = moveUpward(currentDirection);
         expect(actualOutput).toBe("U");
+    })
+});
+
+describe("gotoBackward", () => {
+    it("it shold move to backward",() => {
+        const currentDirection:Direction = "E";
+        const actualOutput  : [Position,Direction] = moveBackward({ x: 0, y: 1, z: 0 },currentDirection);
+        expect(actualOutput).toEqual([{ x: 0, y: 1, z: -1 }, 'E']);
     })
 });
 
