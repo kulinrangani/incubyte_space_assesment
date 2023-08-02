@@ -1,4 +1,4 @@
-export type Direction = 'N' | 'E' | 'S' | 'W';
+export type Direction = 'N' | 'E' | 'S' | 'W' | 'U' | 'B';
 export type Command = 'f' | 'r' | 'u' | 'b' | 'l';
 export interface Position {
     x: number;
@@ -33,6 +33,11 @@ export const rotateRight = (currentDirection: Direction): Direction => {
         default:
             return currentDirection;
     }
+}
+
+export const gotoUpward = (currentDirection: Direction): Direction => {
+    const directionWillBe:Direction = 'U';
+    return directionWillBe;
 }
 
 export default function spaceCraft(commands: Command[], initialDirection: Direction): [Position, Direction] {

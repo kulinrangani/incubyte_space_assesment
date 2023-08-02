@@ -1,4 +1,4 @@
-import { moveForward , Position , Command , Direction , rotateRight} from "./spaceCraft";
+import { moveForward , Position , Command , Direction , rotateRight, gotoUpward , } from "./spaceCraft";
 import spaceCraft from "./spaceCraft";
 describe("move forward", () => {
     it("it shold move forward to the space", () => {
@@ -20,14 +20,22 @@ describe("rotate Right", () => {
     })
 });
 
+describe("gotoUpward", () => {
+    it("it shold rotate to upward",() => {
+        const currentDirection:Direction = "E";
+        const actualOutput  : Direction = gotoUpward(currentDirection);
+        expect(actualOutput).toBe("U");
+    })
+});
+
 describe("spacecraft", () => {
-    it("Should move forward in the same direction", () => {
+    it("Should move forward in the same direction  Command-1", () => {
         const commands:Command[] = ["f"];
         const initialDirection = "N";
         const actualOutput: [Position,Direction] = spaceCraft(commands, initialDirection);
         expect(actualOutput).toEqual([ { x: 0, y: 1, z: 0 }, 'N' ]) 
     })
-    it("should move forward and then rotate to the right", () => {
+    it("should move forward and then rotate to the right Command-2", () => {
         const commands:Command[] = ["f", "r"];
         const initialDirection = "N";
         const actualOutput: [Position,Direction] = spaceCraft(commands, initialDirection);
