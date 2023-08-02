@@ -20,6 +20,21 @@ export const moveForward = (currentPosition: Position, currentDirection: Directi
     }
   }
 
+export const rotateRight = (currentDirection: Direction): Direction =>{
+    switch (currentDirection) {
+      case 'N':
+        return 'E';
+      case 'E':
+        return 'S';
+      case 'S':
+        return 'W';
+      case 'W':
+        return 'N';
+      default:
+        return currentDirection;
+    }
+  }
+
 export default function spaceCraft(commands: Command[], initialDirection: Direction): [Position, Direction] {
     let currentPosition: Position = { x: 0, y: 0, z: 0 };
     let currentDirection: Direction = initialDirection;
