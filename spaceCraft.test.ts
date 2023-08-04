@@ -7,6 +7,7 @@ import {
   moveUpward,
   moveBackward,
   rotateLeft,
+  flipDirection
 } from "./spaceCraft";
 import spaceCraft from "./spaceCraft";
 
@@ -38,7 +39,7 @@ describe("rotate Left", () => {
     const actualOutput: Direction = rotateLeft(currentDirection);
     expect(actualOutput).toBe("W");
   });
-  
+
   it("it shold rotate left", () => {
     const currentDirection: Direction = "E";
     const actualOutput: Direction = rotateLeft(currentDirection);
@@ -53,7 +54,7 @@ describe("rotate Left", () => {
 });
 
 describe("gotoUpward", () => {
-  it("it shold rotate to upward", () => {
+  it("shold rotate to upward", () => {
     const actualOutput: Direction = moveUpward();
     expect(actualOutput).toBe("U");
   });
@@ -65,6 +66,13 @@ describe("gotoBackward", () => {
     expect(actualOutput).toEqual({ x: 0, y: 1, z: -1 });
   });
 });
+
+describe("flipDirection",()=>{
+    it("should flip the direction",()=>{
+        const actualOutput :Direction= flipDirection("W");
+        expect(actualOutput).toBe("E");
+    })
+})
 
 describe("spacecraft", () => {
   it("Should move forward in the same direction  Command-1", () => {

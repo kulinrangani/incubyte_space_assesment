@@ -49,17 +49,7 @@ export const rotateRight = (
 ): Direction => {
   switch (currentDirection) {
     case "U":
-      if (prevDirection == "W") {
-        return "W";
-      } else if (prevDirection == "N") {
-        return "N";
-      } else if (prevDirection == "E") {
-        return "E";
-      } else if (prevDirection == "S") {
-        return "S";
-      } else {
-        return "W";
-      }
+      return prevDirection || 'W'; 
     case "N":
       return "E";
     case "E":
@@ -73,24 +63,27 @@ export const rotateRight = (
   }
 };
 
+export const flipDirection = (direction : Direction) :Direction =>{
+    if (direction == "W") {
+        return "E";
+      } else if (direction == "S") {
+        return "N";
+      } else if (direction == "E") {
+        return "W";
+      } else if (direction == "N") {
+        return "S";
+      } else {
+        return "W";
+      } 
+}
+
 export const rotateLeft = (
   currentDirection: Direction,
   prevDirection?: Direction
 ): Direction => {
   switch (currentDirection) {
     case "U":
-      console.log(currentDirection, prevDirection);
-      if (prevDirection == "W") {
-        return "E";
-      } else if (prevDirection == "S") {
-        return "N";
-      } else if (prevDirection == "E") {
-        return "W";
-      } else if (prevDirection == "N") {
-        return "S";
-      } else {
-        return "W";
-      }
+        return flipDirection(prevDirection? prevDirection : 'U');
     case "N":
       return "W";
     case "W":
