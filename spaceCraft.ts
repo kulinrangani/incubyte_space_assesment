@@ -140,6 +140,7 @@ export class SpaceCraft {
           currentDirection = this.rotateRight(currentDirection);
           break;
         case "u":
+          this.prevDirection = currentDirection;
           currentDirection = this.moveUpward();
           break;
         case "b":

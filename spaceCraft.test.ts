@@ -6,6 +6,7 @@ describe("SpaceCraft", () => {
   beforeAll(() => {
     spaceCraft = new SpaceCraft();
   });
+
   describe("move forward", () => {
     it("shold move forward to the space", () => {
       const currentPosition: Position = { x: 0, y: 0, z: 0 };
@@ -104,5 +105,6 @@ describe("SpaceCraft", () => {
       );
       expect(actualOutput).toEqual([{ x: 0, y: 1, z: -1 }, "W"]);
     });
+    
   });
 });
