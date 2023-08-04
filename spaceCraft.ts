@@ -60,8 +60,10 @@ export class SpaceCraft {
     return "U";
   }
 
-    moveBackward(currentPosition: Position,
-        currentDirection: Direction): Position {
+  moveBackward(
+    currentPosition: Position,
+    currentDirection: Direction
+  ): Position {
     switch (currentDirection) {
       case "N":
         currentPosition = { ...currentPosition, y: currentPosition.y - 1 };
@@ -82,6 +84,46 @@ export class SpaceCraft {
     return currentPosition;
   }
 
+  flipDirection(direction: Direction): Direction {
+    if (direction == "W") {
+      return "E";
+    } else if (direction == "S") {
+      return "N";
+    } else if (direction == "E") {
+      return "W";
+    } else if (direction == "N") {
+      return "S";
+    } else {
+      return "W";
+    }
+  }
+
+  rotateLeft(
+    currentDirection: Direction,
+    prevDirection?: Direction
+  ): Direction {
+    switch (currentDirection) {
+      case "U":
+        currentDirection = this.flipDirection(
+          prevDirection ? prevDirection : "U"
+        );
+        break;
+      case "N":
+        currentDirection = "W";
+        break;
+      case "W":
+        currentDirection = "S";
+        break;
+      case "S":
+        currentDirection = "E";
+        break;
+      case "E":
+        currentDirection = "N";
+        break;
+    }
+    return currentDirection;
+  }
+
   executeCommands(
     commands: Command[],
     initialDirection: Direction
@@ -100,9 +142,15 @@ export class SpaceCraft {
         case "u":
           currentDirection = this.moveUpward();
           break;
-          case "b":
-            currentPosition = this.moveBackward(currentPosition, currentDirection);
-            break;
+        case "b":
+          currentPosition = this.moveBackward(
+            currentPosition,
+            currentDirection
+          );
+          break;
+        case "l":
+          currentDirection = this.rotateLeft(currentDirection);
+          break;
       }
     }
     return [currentPosition, currentDirection];

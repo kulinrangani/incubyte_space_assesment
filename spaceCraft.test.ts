@@ -54,14 +54,23 @@ describe("SpaceCraft", () => {
     });
 
     it("Should move backward Command-4", () => {
-        const commands: Command[] = ["f", "r", "u", "b"];
-        const initialDirection = "N";
-        const actualOutput: [Position, Direction] = spaceCraft.executeCommands(
-          commands,
-          initialDirection
-        );
-        expect(actualOutput).toEqual([{ x: 0, y: 1, z: -1 }, "U"]);
-      });
+      const commands: Command[] = ["f", "r", "u", "b"];
+      const initialDirection = "N";
+      const actualOutput: [Position, Direction] = spaceCraft.executeCommands(
+        commands,
+        initialDirection
+      );
+      expect(actualOutput).toEqual([{ x: 0, y: 1, z: -1 }, "U"]);
+    });
 
+    it("Should move spaceCraft to left direction Command-5", () => {
+      const commands: Command[] = ["f", "r", "u", "b", "l"];
+      const initialDirection = "N";
+      const actualOutput: [Position, Direction] = spaceCraft.executeCommands(
+        commands,
+        initialDirection
+      );
+      expect(actualOutput).toEqual([{ x: 0, y: 1, z: -1 }, "W"]);
+    });
   });
 });
