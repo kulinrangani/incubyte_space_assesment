@@ -11,7 +11,10 @@ export class SpaceCraft {
   currentDirection: Direction;
   prevDirection: Direction;
 
-  moveForward(currentPosition : Position,currentDirection : Direction) :Position  {
+  moveForward(
+    currentPosition: Position,
+    currentDirection: Direction
+  ): Position {
     switch (currentDirection) {
       case "N":
         currentPosition = { ...currentPosition, y: currentPosition.y + 1 };
@@ -29,31 +32,47 @@ export class SpaceCraft {
     return currentPosition;
   }
 
-    executeCommands(commands: Command[] , initialDirection: Direction): [Position, Direction]  {
+  rotateRight(
+    currentDirection: Direction,
+    prevDirection?: Direction
+  ): Direction {
+    switch (currentDirection) {
+      case "U":
+        currentDirection = prevDirection || "W";
+        break;
+      case "N":
+        currentDirection = "E";
+        break;
+      case "E":
+        currentDirection = "S";
+        break;
+      case "S":
+        currentDirection = "W";
+        break;
+      case "W":
+        currentDirection = "N";
+        break;
+    }
+    return currentDirection;
+  }
+
+  executeCommands(
+    commands: Command[],
+    initialDirection: Direction
+  ): [Position, Direction] {
     let currentPosition: Position = { x: 0, y: 0, z: 0 };
     let currentDirection: Direction = initialDirection;
     let prevDirection: Direction = initialDirection;
     for (let i = 0; i < commands.length; i++) {
       switch (commands[i]) {
         case "f":
-          currentPosition = this.moveForward(currentPosition,currentDirection);
+          currentPosition = this.moveForward(currentPosition, currentDirection);
           break;
-        // case "r":
-        //   this.rotateRight();
-        //   break;
-        // case "u":
-        //   this.prevDirection = this.currentDirection;
-        //   this.moveUpward();
-        //   break;
-        // case "b":
-        //   this.moveBackward();
-        //   break;
-        // case "l":
-        //   this.rotateLeft();
-        //   break;
+        case "r":
+          currentDirection = this.rotateRight(currentDirection);
+          break;
       }
     }
-    return [currentPosition , currentDirection];
+    return [currentPosition, currentDirection];
   }
-
 }
