@@ -60,6 +60,28 @@ export class SpaceCraft {
     return "U";
   }
 
+    moveBackward(currentPosition: Position,
+        currentDirection: Direction): Position {
+    switch (currentDirection) {
+      case "N":
+        currentPosition = { ...currentPosition, y: currentPosition.y - 1 };
+        break;
+      case "E":
+        currentPosition = { ...currentPosition, x: currentPosition.x - 1 };
+        break;
+      case "S":
+        currentPosition = { ...currentPosition, y: currentPosition.y - 1 };
+        break;
+      case "W":
+        currentPosition = { ...currentPosition, x: currentPosition.x - 1 };
+        break;
+      case "U":
+        currentPosition = { ...currentPosition, z: currentPosition.z - 1 };
+        break;
+    }
+    return currentPosition;
+  }
+
   executeCommands(
     commands: Command[],
     initialDirection: Direction
@@ -78,6 +100,9 @@ export class SpaceCraft {
         case "u":
           currentDirection = this.moveUpward();
           break;
+          case "b":
+            currentPosition = this.moveBackward(currentPosition, currentDirection);
+            break;
       }
     }
     return [currentPosition, currentDirection];
