@@ -28,4 +28,32 @@ export class SpaceCraft {
     }
     return currentPosition;
   }
+
+    executeCommands(commands: Command[] , initialDirection: Direction): [Position, Direction]  {
+    let currentPosition: Position = { x: 0, y: 0, z: 0 };
+    let currentDirection: Direction = initialDirection;
+    let prevDirection: Direction = initialDirection;
+    for (let i = 0; i < commands.length; i++) {
+      switch (commands[i]) {
+        case "f":
+          currentPosition = this.moveForward(currentPosition,currentDirection);
+          break;
+        // case "r":
+        //   this.rotateRight();
+        //   break;
+        // case "u":
+        //   this.prevDirection = this.currentDirection;
+        //   this.moveUpward();
+        //   break;
+        // case "b":
+        //   this.moveBackward();
+        //   break;
+        // case "l":
+        //   this.rotateLeft();
+        //   break;
+      }
+    }
+    return [currentPosition , currentDirection];
+  }
+
 }
