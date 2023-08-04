@@ -48,7 +48,7 @@ jest
 
 ## Examples
 
-### It Will Follow The Commands
+### The executeCommands Method of class will does following
 
 ```
 const commands: Command[] = ["f", "r"];
