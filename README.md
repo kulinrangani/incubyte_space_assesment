@@ -42,5 +42,6 @@ npm config ts-jest config:init
 ### To Run the test Suite
 
 ```
+In Terminal run the following command:
 jest
 ```
