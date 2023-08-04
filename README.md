@@ -1,6 +1,6 @@
 # Chandrayaan 3 TDD Assessment
 
-It is Space craft programme which is developed with Test Driven Development in Typescript where we send the commands and it will move acordingly and sentback cordinates and positions.
+It is Space craft programm which is developed with Test Driven Development in Typescript where we send the commands and it will move acordingly and sentback cordinates and positions.
 
 ## Class
 
@@ -44,4 +44,22 @@ npm config ts-jest config:init
 ```
 In Terminal run the following command:
 jest
+```
+
+## Examples
+
+### It Will Follow The Commands
+
+```
+const commands: Command[] = ["f", "r"];
+const initialDirection = "N";
+const actualOutput: [Position, Direction] = spaceCraft.executeCommands(commands,initialDirection);
+console.log(actualOutput); //[{ x: 0, y: 1, z: 0 }, "E"]
+```
+
+```
+const commands: Command[] = ["f", "r", "u"];
+const initialDirection = "N";
+const actualOutput: [Position, Direction] = spaceCraft.executeCommands(commands,initialDirection);
+console.log(actualOutput); //[{ x: 0, y: 1, z: 0 }, "U"]
 ```
