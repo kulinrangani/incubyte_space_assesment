@@ -25,3 +25,9 @@ prevDirection: Direction;
 **moveUpward():** This method will move the space craft to upward direction and return the current direction.
 
 **flipDirection():** This method will flip the space craft to oppositeDirection and return the current direction.
+
+## Custome types
+
+**interface :Position** This interface has object with three cords x(for East ANd West) and y(for North and South) and z (for up and down to the galastic plane) with the datatype number.
+
+**Type Aliases** We have two different types for Command and Direction.
