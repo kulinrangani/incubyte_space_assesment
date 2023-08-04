@@ -31,3 +31,16 @@ prevDirection: Direction;
 **interface :Position** This interface has object with three cords x(for East ANd West) and y(for North and South) and z (for up and down to the galastic plane) with the datatype number.
 
 **Type Aliases** We have two different types for Command and Direction.
+
+## How To Setup.
+
+```
+npm install
+npm config ts-jest config:init
+```
+
+### To Run the test Suite
+
+```
+jest
+```
