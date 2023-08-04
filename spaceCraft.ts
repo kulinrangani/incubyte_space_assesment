@@ -56,6 +56,10 @@ export class SpaceCraft {
     return currentDirection;
   }
 
+  moveUpward(): Direction {
+    return "U";
+  }
+
   executeCommands(
     commands: Command[],
     initialDirection: Direction
@@ -70,6 +74,9 @@ export class SpaceCraft {
           break;
         case "r":
           currentDirection = this.rotateRight(currentDirection);
+          break;
+        case "u":
+          currentDirection = this.moveUpward();
           break;
       }
     }
